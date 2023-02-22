@@ -18,30 +18,31 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import Footer from './footer';
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div>
-      register
+    
       <Box>
         <Image src="https://assets.burberry.com/is/image/Burberryltd/MyAccount.jpg?$BBY_V2_BASIC$&wid=1349&hei=270"></Image>
      <Heading mt="20px">SIGN IN $ REGISTER</Heading>
       </Box>
       <Box></Box>
-      <Box border="1px solid blue" display={"flex"} justifyContent='space-evenly'>
-      <Box border="1px solid red" w="35%">
+      <Box  display={"flex"}  >
+      <Box w="50%" paddingLeft="40px" >
       <Flex
-    
+    paddingLeft="50px"
       minH={'100vh'}
-      align={'center'}
+    
       justify={'center'}
     >
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <Stack spacing={8} w="100%" py={12} px={6}  >
         
         <Box
-          rounded={'lg'}
+         
           bg={useColorModeValue('white', 'gray.700')}
-        
+       
           border="1px solid gray"
           p={8}>
           <Stack spacing={4}>
@@ -77,7 +78,7 @@ const Register = () => {
       </Box>
       
     
-      <Box  border="1px solid red" w="65%">
+      <Box  w="65%" marginRight={"50px"}>
       <Flex
       minH={'100vh'}
       align={'center'}
@@ -86,7 +87,7 @@ const Register = () => {
       <Stack spacing={8} mx={'auto'} maxW={'lg'} >
        
         <Box
-         
+         mt="-50px"
          bg={"white"}
          border="1px solid gray"
           p={8}>
@@ -124,6 +125,10 @@ const Register = () => {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+            <FormControl id="profile" >
+              <FormLabel>Profile Pic</FormLabel>
+              <Input type="src" />
+            </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
                 loadingText="Submitting"
@@ -146,7 +151,11 @@ const Register = () => {
       </Stack>
     </Flex>
       </Box>
+      
     </Box>
+    <Box>
+        <Footer/>
+      </Box>
     </div>
   )
 }
