@@ -2,22 +2,26 @@ import React from 'react'
 import { Box ,Image,Heading } from '@chakra-ui/react'
 import ReactPlayer from "react-player";
 import Footer from './footer'
-
+import { useContext } from 'react';
+import { Authcontext } from '../Context/AuthContext';
 
 
 const Home = () => {
+  const{isAuth}=useContext(Authcontext)
 
-
+  console.log("isasuth",isAuth)
   return (
- 
+    
       <Box>
-       
+     
         <Box>
        
         
-       <iframe width="100%" height="800px" src="https://www.youtube.com/embed/XXqlTYDIEWo" title="The Burberry Autumn Winter 2023 Show​​" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+       <iframe width="100%"  height="800px" src="https://www.youtube.com/embed/XXqlTYDIEWo?autoplay=1" title="The Burberry Autumn Winter 2023 Show​​" frameborder="0" allow="autoplay"></iframe>
+      
      
        </Box>
+       
         <Box display={"grid "} gridTemplateColumns="repeat(2,1fr)" gap="5px">
         
 <Image h="800px" w="100%" src="https://assets.burberry.com/is/image/Burberryltd/BE9F4619-2978-4D6E-9166-A117A63CC2E0?$BBY_V2_ML_1x1$&wid=2500&hei=2500"></Image>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Box ,Image,Heading} from '@chakra-ui/react'
+import {ArrowLeftIcon} from '@chakra-ui/icons'
 import {
   Flex,
   Checkbox,
@@ -16,14 +17,98 @@ import {
   useColorModeValue,
   Link,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Footer from './footer';
+import { useRef } from 'react';
+  import { useState,useEffect } from 'react';
+  import { useNavigate } from "react-router-dom";
+  import toast, { Toaster } from 'react-hot-toast';
+  import { useContext } from 'react';
+  import { Authcontext } from '../Context/AuthContext';
+  import axios from 'axios'
+
+
 const Register = () => {
+  const{isAuth,login1}=useContext(Authcontext)
   const [showPassword, setShowPassword] = useState(false);
+  const[signup,setsignup]=useState(false)
+  const name=useRef(' ')
+  const surname=useRef(' ')
+  const email=useRef(' ')
+  const pass=useRef(' ')
+
+  
+  const loginemail=useRef(' ')
+  const loginpass=useRef(' ')
+
+  const handleclick= async()=>{
+   
+    const Name=name.current.value 
+    const Surname=surname.current.value
+    const Pass=pass.current.value
+    const Email=email.current.value
+
+
+
+if(Name=="" ){
+  toast.error("please fill the name")
+}else if(Surname==""){
+  toast.error("please fill the Surname")
+}
+else if(Pass==""){
+  toast.error("please fill the password")
+}
+else if(Email==""){
+  toast.error("please fill the email")
+}
+else{
+  localStorage.setItem("name",Name+" "+Surname)
+  localStorage.setItem( "email",Email);
+  localStorage.setItem( "pass",Pass);
+  toast.success("Signup successfully")
+ setsignup(true)
+ 
+}
+  
+}
+
+
+
+const handleclick2=()=>{
+
+   
+   const Pass1=loginpass.current.value
+   const Email1=loginemail.current.value
+
+   let email1 = localStorage.getItem('email')
+   let pass1 = localStorage.getItem('pass')
+
+if(Email1==email1 && Pass1==pass1 ){
+   
+  
+  login1(true)
+ 
+ toast.success("login successfully")
+
+ setInterval(function () {
+ 
+  window.location.href = "/"}, 400);
+ 
+}
+
+else if(Pass1!=loginpass){
+ toast.error("Wrong password")
+}else if(Email1!=loginemail){
+  toast.error("Wrong Email")
+}
+
+ 
+}
+console.log("login",isAuth)
   return (
     <div>
-    
+     <Toaster/>
       <Box>
         <Image src="https://assets.burberry.com/is/image/Burberryltd/MyAccount.jpg?$BBY_V2_BASIC$&wid=1349&hei=270"></Image>
      <Heading mt="20px">SIGN IN $ REGISTER</Heading>
@@ -48,11 +133,11 @@ const Register = () => {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" ref={loginemail} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" ref={loginpass}  />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -67,7 +152,7 @@ const Register = () => {
                 color={'white'}
                 _hover={{
                   bg: 'black',
-                }}>
+                }} onClick={handleclick2}  >
                 Sign in
               </Button>
             </Stack>
@@ -77,8 +162,10 @@ const Register = () => {
     </Flex>
       </Box>
       
-    
-      <Box  w="65%" marginRight={"50px"}>
+    {signup? <Box   w="35%" marginLeft={10} mt="150px"  border="1px solid gray" h="100px" display="flex" gap={5} >
+<Heading marginLeft={20} mt="15px"><ArrowLeftIcon/> </Heading><Heading mt="18px"> Please Login</Heading>
+    </Box>:
+      <Box  w="65%" marginRight={"50px"} >
       <Flex
       minH={'100vh'}
       align={'center'}
@@ -96,24 +183,24 @@ const Register = () => {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text"  ref={name} />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text"  ref={surname}/>
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email"  ref={email} />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input type={showPassword ? 'text' : 'password'} ref={pass} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -137,7 +224,7 @@ const Register = () => {
                 color={'white'}
                 _hover={{
                   bg: 'black',
-                }}>
+                }} onClick={handleclick}>
                 Sign up
               </Button>
             </Stack>
@@ -151,8 +238,9 @@ const Register = () => {
       </Stack>
     </Flex>
       </Box>
-      
+}
     </Box>
+              
     <Box>
         <Footer/>
       </Box>

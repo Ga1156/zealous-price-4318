@@ -1,10 +1,10 @@
-import { Search2Icon } from '@chakra-ui/icons'
-import { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon ,ArrowRightIcon} from '@chakra-ui/icons'
+
 import toast, { Toaster } from 'react-hot-toast';
-import { useContext } from 'react'
-import { Authcontext } from '../Context/AuthContext'
-import { useRef } from 'react';
+
+import { useRef ,useState } from 'react';
+
+import { useContext } from 'react';
+import { Authcontext } from '../Context/AuthContext';
 import {
   Box,
   Flex,
@@ -76,36 +76,34 @@ const LINKS=[
 ]
 
 export default function Navbar() {
-const name23=useRef("")
+
+  const{authState,login1,logout1}=useContext(Authcontext)
+   const [pro,setpro]=useState(true)
 
 
- const handlesearch =()=>{
-  const Name23=name23.current.value 
-  console.log(Name23)
- }
+
+
  
-  const{isAuth}=useContext(Authcontext)
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [login,setlogin]=useState(false)
+ 
+ 
   
-  const login1=()=>{
-   setlogin(true)
-  }
-  if(login){
-    
-   return  <Navigate to="/"/>
-   }
    
   const username= localStorage.getItem("name")
   let useremail = localStorage.getItem('email')
+  let userpass = localStorage.getItem('pass')
  const logout=()=>{
-  
+  logout1()
+  setpro(false)
   toast.success("Logout successfully")
   localStorage.removeItem("name")
   localStorage.removeItem("email")
   localStorage.removeItem("pass")
  }
  const name4=localStorage.getItem("name")
+
+
+
+ console.log("AUTHSTATE",authState)
   return (
     <>
     <Toaster/>
@@ -133,7 +131,7 @@ const name23=useRef("")
           </HStack>
           <Flex  >
           <Menu >
-          <RouterLink to="/cart">  <MenuButton
+          <RouterLink  to="/cart">  <MenuButton
                 as={Button}
                 
                 variant={'link'}
@@ -147,7 +145,7 @@ const name23=useRef("")
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAsGGmat8qqE2zmS2CYgZNqTZiU296ZA6zF4XUj_vyPth1dn51uoBo5ly71AKPMda4BAY&usqp=CAU'
                   }
                 />
-                <Text color="white" fontSize={"12px"}>{username}</Text>
+               
               </MenuButton></RouterLink>  
              
             </Menu>
@@ -166,14 +164,14 @@ const name23=useRef("")
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVe0cFaZ9e5Hm9X-tdWRLSvoZqg2bjemBABA&usqp=CAU'
                   }
                 />
-                <Text color="white" fontSize={"12px"}>{username}</Text>
+                <Text color="white" fontSize={"12px"}></Text>
               </MenuButton>
               <MenuList border="none" borderBottom={"none"} shadow="none" bg="none">
             
               
-              
+              {pro?
       <Stack
-      
+      border="1px solid red"
         spacing={4}
         w={'full'}
         maxW={'md'}
@@ -186,7 +184,7 @@ const name23=useRef("")
         p={6}
        >
         <Heading  fontWeight={600} as='h3' size='lg'>
-       My Profile
+        {username}
         </Heading>
         <FormControl id="userName">
           <FormLabel>User Icon</FormLabel>
@@ -211,9 +209,9 @@ const name23=useRef("")
           </Stack>
         </FormControl>
         <FormControl id="userName" isRequired>
-          <FormLabel>User name</FormLabel>
+          <FormLabel>User Password</FormLabel>
           <Input isDisabled
-            placeholder="UserName"
+            placeholder={userpass}
             _placeholder={{ color: 'gray.500' }}
             type="text"
           />
@@ -221,7 +219,7 @@ const name23=useRef("")
         <FormControl id="email" isRequired>
           <FormLabel>Email address</FormLabel>
           <Input isDisabled
-            placeholder="your-email@example.com"
+            placeholder={useremail}
             _placeholder={{ color: 'gray.500' }}
             type="email"
           />
@@ -234,13 +232,13 @@ const name23=useRef("")
             w="full"
             _hover={{
               bg: 'red.500',
-            }}>
+            }} onClick={logout}>
           LOGOUT
           </Button>
        
         </Stack>
       </Stack>
- 
+ :  <Heading bg="white" color="black"  p={3} fontWeight={600} as='h3' size='lg'>NO USER FOUND</Heading>}
                
               </MenuList>
             </Menu>
