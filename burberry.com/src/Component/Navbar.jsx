@@ -1,8 +1,8 @@
 
 import toast, { Toaster } from 'react-hot-toast';
 
-import { useRef ,useState } from 'react';
-
+import { useRef ,useState ,useEffect} from 'react';
+import axios from 'axios'
 import { useContext } from 'react';
 import { Authcontext } from '../Context/AuthContext';
 import {
@@ -80,7 +80,22 @@ export default function Navbar() {
   const{authState,login1,logout1}=useContext(Authcontext)
    const [pro,setpro]=useState(true)
 
+   const [cartdata,setcartdata]=useState([])
 
+   const getdata=()=>{
+     axios.get('http://localhost:8080/CART')
+     .then((res)=>setcartdata(res.data) )
+    
+  }
+ 
+ 
+  useEffect(()=>{
+     getdata()
+ 
+ 
+   },[])
+ 
+  
 
 
  
@@ -103,7 +118,7 @@ export default function Navbar() {
 
 
 
- console.log("AUTHSTATE",authState)
+ //console.log("AUTHSTATE",authState)
   return (
     <>
     <Toaster/>
@@ -130,17 +145,20 @@ export default function Navbar() {
           
           </HStack>
           <Flex  >
+          
           <Menu >
           <RouterLink  to="/cart">  <MenuButton
                 as={Button}
                 
+                
                 variant={'link'}
                 cursor={'pointer'}
                 >
+                  
               <Avatar ml="250px"
-             
+            
                   size={'sm'}
-                 
+                
                   src={
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAsGGmat8qqE2zmS2CYgZNqTZiU296ZA6zF4XUj_vyPth1dn51uoBo5ly71AKPMda4BAY&usqp=CAU'
                   }
@@ -150,6 +168,7 @@ export default function Navbar() {
              
             </Menu>
           </Flex>
+          <Box  fontWeight={500}   color="white" marginTop={-8}  marginLeft={-6} >{cartdata.length==0?null:cartdata.length}</Box>
           <Flex  >
           <Menu  >
               <MenuButton
@@ -158,6 +177,7 @@ export default function Navbar() {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
+                  
               <Avatar 
                   size={'sm'}
                   src={
@@ -171,12 +191,12 @@ export default function Navbar() {
               
               {pro?
       <Stack
-      border="1px solid red"
+     
         spacing={4}
         w={'full'}
         maxW={'md'}
         maxH={"450px"}
-        bg={('white')}
+        bg={('gray.200')}
        
         rounded={'xl'}
         boxShadow={'lg'}
@@ -208,19 +228,20 @@ export default function Navbar() {
             </Center>
           </Stack>
         </FormControl>
-        <FormControl id="userName" isRequired>
+        <FormControl id="userName" >
           <FormLabel>User Password</FormLabel>
           <Input isDisabled
+            
             placeholder={userpass}
-            _placeholder={{ color: 'gray.500' }}
+            _placeholder={{ color: 'black' }}
             type="text"
           />
         </FormControl>
-        <FormControl id="email" isRequired>
+        <FormControl id="email" >
           <FormLabel>Email address</FormLabel>
           <Input isDisabled
             placeholder={useremail}
-            _placeholder={{ color: 'gray.500' }}
+            _placeholder={{ color: 'black' }}
             type="email"
           />
         </FormControl>

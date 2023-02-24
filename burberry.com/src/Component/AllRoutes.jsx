@@ -14,6 +14,11 @@ import Womens from '../Pages/Womens'
 import Children from '../Pages/Children'
 import Cart from '../Pages/Cart'
 import SinglePage from '../Pages/SinglePage'
+
+
+import PaymentPage from '../Pages/Paymentpage'
+
+import AdminPage from '../Admin/AdminPage'
 import PrivateRoutes from './PrivateRoutes'
 const AllRoutes = () => {
   return (
@@ -33,6 +38,8 @@ const AllRoutes = () => {
         <Route path="/gifts" element={<Gifts/>}></Route>
         <Route path="/cart" element={<Cart/>}></Route>
         <Route path="/description/:id" element={<SinglePage/>}></Route>
+       <Route  path="/adminpage" element={<PrivateRoutes><AdminPage/></PrivateRoutes>}></Route>
+        <Route path="/paymentpage" element={<PaymentPage/>}></Route>
       </Routes>
    
   )

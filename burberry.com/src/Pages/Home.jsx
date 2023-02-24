@@ -17,7 +17,7 @@ const Home = () => {
         <Box>
        
         
-       <iframe width="100%"  height="800px" src="https://www.youtube.com/embed/XXqlTYDIEWo?autoplay=1" title="The Burberry Autumn Winter 2023 Show​​" frameborder="0" allow="autoplay"></iframe>
+       <iframe width="100%"  height="800px" src="https://www.youtube.com/embed/XXqlTYDIEWo" title="The Burberry Autumn Winter 2023 Show​​" frameborder="0" allow="autoplay"></iframe>
       
      
        </Box>

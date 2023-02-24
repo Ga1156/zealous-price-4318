@@ -1,18 +1,30 @@
 
 import './App.css';
-import AllRoutes from './Component/AllRoutes';
-import Navbar from './Component/Navbar';
+
+import Main from './Component/Main';
 
 
 function App() {
+  
+
+ 
+  
   return (
+ 
     <div className="App">
-     <Navbar/>
-     <AllRoutes/>
+     
+     <Main/>
 
    
     </div>
+
+
   );
 }
 
 export default App;
+
+
+
+
+

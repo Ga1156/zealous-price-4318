@@ -41,7 +41,7 @@ const Register = () => {
   
   const loginemail=useRef(' ')
   const loginpass=useRef(' ')
-
+  const navigate=useNavigate()
   const handleclick= async()=>{
    
     const Name=name.current.value 
@@ -84,6 +84,9 @@ const handleclick2=()=>{
    let email1 = localStorage.getItem('email')
    let pass1 = localStorage.getItem('pass')
 
+   
+
+
 if(Email1==email1 && Pass1==pass1 ){
    
   
@@ -95,6 +98,27 @@ if(Email1==email1 && Pass1==pass1 ){
  
   window.location.href = "/"}, 400);
  
+}else if(Email1=="eve.holt@reqres.in" && Pass1=="cityslicka"){
+  toast.success("Admin Login Sucessfully")
+  let obj={
+    "email": Email1,
+    "password":Pass1
+  }
+  try {
+    fetch(`https://reqres.in/api/login`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(obj),
+    }).then((res)=>res.json())
+  .then((res)=> {
+    if(res.token){
+      login1(res.token)
+      navigate("/adminpage")
+    }
+  })
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 else if(Pass1!=loginpass){
@@ -229,8 +253,8 @@ console.log("login",isAuth)
               </Button>
             </Stack>
             <Stack pt={6}>
-              <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+              <Text align={'center'} >
+                Already a user? <Link color={'blue.400'} onClick={()=> setsignup(true)}>Login</Link>
               </Text>
             </Stack>
           </Stack>

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios'
 const getdata=(id)=>{
-  console.log("id:",id)
+ // console.log("id:",id)
   let url;
   if(id>=22 && id<=32){
     url=`http://localhost:8080/Mens/${id}`
@@ -132,7 +132,7 @@ const SinglePage = () => {
                 color={'white'}
                 _hover={{
                   bg: 'black',
-                }}>
+                }} onClick={()=> window.location.href = "/paymentpage"}>
         Buy now
       </Button>
       <Button  

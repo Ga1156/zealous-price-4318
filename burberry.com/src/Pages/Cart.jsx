@@ -24,7 +24,7 @@ const Cart = () => {
 
  
   if(cartdata.length===0){
-    return <Box w="50%" margin="auto" h="auto"   mt="30px">
+    return <Box w="50%" margin="auto"    mt="30px">
     <Card
   direction={{ base: 'column', sm: 'row' }}
   overflow='hidden'
@@ -56,7 +56,13 @@ const Cart = () => {
 </Card>
     </Box>
   }
-
+  let sum=0
+  for (let i=0; i<cartdata.length; i++){
+      sum+=cartdata[i].price
+  }
+  let dis=Math.floor(sum-(sum/10))
+  let saveamount =sum-dis
+   console.log(dis)
   return (
     
       <Box display="flex" gap="5px">
@@ -110,11 +116,42 @@ const Cart = () => {
 )}
       </Box>
  
-      <Box w="30%" h="500px"  border="1px solid gray">
-
-      </Box>
-      </Box>
+      <Box w="30%" h="400px"  border="1px solid gray" >
+  <Heading size="lg" color="teal" marginTop={3} marginBottom={5}>PRICE DETAILS</Heading>
+  <Box display="flex" gap="215px" borderTop={"1px solid gray"} >
+    <Heading size="small" fontWeight={600} textAlign={"left"} h="50px"  p="8px">Amount</Heading>
+    <Heading  size="small" fontWeight={600} textAlign={"left"} h="50px"  p="8px">₹ {sum}</Heading>
+  </Box>
+  <Box display="flex" gap="230px" borderTop={"1px solid gray"}>
+    <Heading size="small" fontWeight={600} textAlign={"left"} h="50px"   p="8px">Discount</Heading>
+    <Heading  size="small" fontWeight={600} textAlign={"left"} h="50px"  p="8px" color="green">15%</Heading>
+    </Box>
+ 
+  <Box display="flex" gap="230px" borderTop={"1px solid gray"}>
+    <Heading size="small" fontWeight={600}  textAlign={"left"} h="50px"  p="8px">Delevery</Heading>
+    <Heading  size="small" fontWeight={600} textAlign={"left"} h="50px"  p="8px" color="green">Free</Heading>
+    </Box>
+  <Box display="flex" gap="130px" borderTop={"1px solid gray"}>
+    <Heading size='md'  textAlign={"left"} h="50px"  p="8px">Total Amount</Heading>
+    <Heading  size="md" fontWeight={700} textAlign={"left"} h="50px"  p="8px">₹ {dis}</Heading>
+    </Box>
+  
+  
+  
+  
+  <Heading size="small" color="green" fontWeight={700} textAlign={"left"} h="50px" borderBottom="1px solid gray" borderTop={"1px solid gray"} p="8px">You will save ₹ {saveamount} on this order</Heading>
+  <Button mt="20px" w="80%" borderRadius={"none"}
+      bg={'RGBA(0, 0, 0, 0.64)'}
+                color={'white'}
+                _hover={{
+                  bg: 'black',
+                }} onClick={()=> window.location.href = "/paymentpage"} >Proceed To Buy</Button>
     
+     
+      </Box>
+     
+      </Box>
+      
   )
 }
 

@@ -351,12 +351,5 @@
       "img": "https://assets.burberry.com/is/image/Burberryltd/C2A81EAD-47BE-4504-903A-AE7544BFA728?$BBY_V2_SL_1x1$&wid=1251&hei=1251"
     }
   ],
-  "CART": [
-    {
-      "title": "Prorsum Label Cotton Hoodie",
-      "price": 6999,
-      "img": "https://assets.burberry.com/is/image/Burberryltd/2765C113-4741-440B-B59B-DB8BAB6647AD?$BBY_V2_SL_1x1$&wid=1251&hei=1251",
-      "id": 1
-    }
-  ]
+  "CART": []
 }
