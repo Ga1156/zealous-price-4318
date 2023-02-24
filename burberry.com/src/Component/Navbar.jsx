@@ -1,10 +1,10 @@
-import { Search2Icon } from '@chakra-ui/icons'
-import { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon ,ArrowRightIcon} from '@chakra-ui/icons'
+
 import toast, { Toaster } from 'react-hot-toast';
-import { useContext } from 'react'
-import { Authcontext } from '../Context/AuthContext'
-import { useRef } from 'react';
+
+import { useRef ,useState ,useEffect} from 'react';
+import axios from 'axios'
+import { useContext } from 'react';
+import { Authcontext } from '../Context/AuthContext';
 import {
   Box,
   Flex,
@@ -76,36 +76,49 @@ const LINKS=[
 ]
 
 export default function Navbar() {
-const name23=useRef("")
 
+  const{authState,login1,logout1}=useContext(Authcontext)
+   const [pro,setpro]=useState(true)
 
- const handlesearch =()=>{
-  const Name23=name23.current.value 
-  console.log(Name23)
- }
- 
-  const{isAuth}=useContext(Authcontext)
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [login,setlogin]=useState(false)
-  
-  const login1=()=>{
-   setlogin(true)
-  }
-  if(login){
+   const [cartdata,setcartdata]=useState([])
+
+   const getdata=()=>{
+     axios.get('http://localhost:8080/CART')
+     .then((res)=>setcartdata(res.data) )
     
-   return  <Navigate to="/"/>
-   }
+  }
+ 
+ 
+  useEffect(()=>{
+     getdata()
+ 
+ 
+   },[])
+ 
+  
+
+
+ 
+ 
+ 
+  
    
   const username= localStorage.getItem("name")
   let useremail = localStorage.getItem('email')
+  let userpass = localStorage.getItem('pass')
  const logout=()=>{
-  
+  logout1()
+  setpro(false)
   toast.success("Logout successfully")
   localStorage.removeItem("name")
   localStorage.removeItem("email")
   localStorage.removeItem("pass")
  }
  const name4=localStorage.getItem("name")
+
+
+
+ //console.log("AUTHSTATE",authState)
   return (
     <>
     <Toaster/>
@@ -132,26 +145,30 @@ const name23=useRef("")
           
           </HStack>
           <Flex  >
+          
           <Menu >
-          <RouterLink to="/cart">  <MenuButton
+          <RouterLink  to="/cart">  <MenuButton
                 as={Button}
+                
                 
                 variant={'link'}
                 cursor={'pointer'}
                 >
+                  
               <Avatar ml="250px"
-             
+            
                   size={'sm'}
-                 
+                
                   src={
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAsGGmat8qqE2zmS2CYgZNqTZiU296ZA6zF4XUj_vyPth1dn51uoBo5ly71AKPMda4BAY&usqp=CAU'
                   }
                 />
-                <Text color="white" fontSize={"12px"}>{username}</Text>
+               
               </MenuButton></RouterLink>  
              
             </Menu>
           </Flex>
+          <Box  fontWeight={500}   color="white" marginTop={-8}  marginLeft={-6} >{cartdata.length==0?null:cartdata.length}</Box>
           <Flex  >
           <Menu  >
               <MenuButton
@@ -160,25 +177,26 @@ const name23=useRef("")
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
+                  
               <Avatar 
                   size={'sm'}
                   src={
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVe0cFaZ9e5Hm9X-tdWRLSvoZqg2bjemBABA&usqp=CAU'
                   }
                 />
-                <Text color="white" fontSize={"12px"}>{username}</Text>
+                <Text color="white" fontSize={"12px"}></Text>
               </MenuButton>
               <MenuList border="none" borderBottom={"none"} shadow="none" bg="none">
             
               
-              
+              {pro?
       <Stack
-      
+     
         spacing={4}
         w={'full'}
         maxW={'md'}
         maxH={"450px"}
-        bg={('white')}
+        bg={('gray.200')}
        
         rounded={'xl'}
         boxShadow={'lg'}
@@ -186,7 +204,7 @@ const name23=useRef("")
         p={6}
        >
         <Heading  fontWeight={600} as='h3' size='lg'>
-       My Profile
+        {username}
         </Heading>
         <FormControl id="userName">
           <FormLabel>User Icon</FormLabel>
@@ -210,19 +228,20 @@ const name23=useRef("")
             </Center>
           </Stack>
         </FormControl>
-        <FormControl id="userName" isRequired>
-          <FormLabel>User name</FormLabel>
+        <FormControl id="userName" >
+          <FormLabel>User Password</FormLabel>
           <Input isDisabled
-            placeholder="UserName"
-            _placeholder={{ color: 'gray.500' }}
+            
+            placeholder={userpass}
+            _placeholder={{ color: 'black' }}
             type="text"
           />
         </FormControl>
-        <FormControl id="email" isRequired>
+        <FormControl id="email" >
           <FormLabel>Email address</FormLabel>
           <Input isDisabled
-            placeholder="your-email@example.com"
-            _placeholder={{ color: 'gray.500' }}
+            placeholder={useremail}
+            _placeholder={{ color: 'black' }}
             type="email"
           />
         </FormControl>
@@ -234,13 +253,13 @@ const name23=useRef("")
             w="full"
             _hover={{
               bg: 'red.500',
-            }}>
+            }} onClick={logout}>
           LOGOUT
           </Button>
        
         </Stack>
       </Stack>
- 
+ :  <Heading bg="white" color="black"  p={3} fontWeight={600} as='h3' size='lg'>NO USER FOUND</Heading>}
                
               </MenuList>
             </Menu>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box ,Heading,Text,Button,Image} from '@chakra-ui/react'
-const Children = () => {
+const  PaymentPage = () => {
   return (
    <>
    <Heading size="xl" color="gray" mt="20px">PAYMENT PAGE</Heading>
@@ -11,4 +11,4 @@ const Children = () => {
   )
 }
 
-export default Children
+export default PaymentPage
