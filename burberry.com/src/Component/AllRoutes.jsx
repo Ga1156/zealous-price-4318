@@ -20,6 +20,7 @@ import PaymentPage from '../Pages/Paymentpage'
 
 import AdminPage from '../Admin/AdminPage'
 import PrivateRoutes from './PrivateRoutes'
+import AdminDashboard from '../Admin/AdminDashboard'
 const AllRoutes = () => {
   return (
    
@@ -40,6 +41,7 @@ const AllRoutes = () => {
         <Route path="/description/:id" element={<SinglePage/>}></Route>
        <Route  path="/adminpage" element={<PrivateRoutes><AdminPage/></PrivateRoutes>}></Route>
         <Route path="/paymentpage" element={<PaymentPage/>}></Route>
+        <Route path="adminDashboard" element={<AdminDashboard/>}/>
       </Routes>
    
   )

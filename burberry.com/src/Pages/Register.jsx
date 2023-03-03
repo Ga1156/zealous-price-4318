@@ -40,7 +40,7 @@ const Register = () => {
 
   
   const loginemail=useRef(' ')
-  const loginpass=useRef(' ')
+  const loginpass=useRef('')
   const navigate=useNavigate()
   const handleclick= async()=>{
    
