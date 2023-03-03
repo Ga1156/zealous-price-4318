@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import Footer from './footer'
 import { useContext } from 'react';
 import { Authcontext } from '../Context/AuthContext';
-
+import { useMediaQuery } from '@chakra-ui/react'
 
 const Home = () => {
   const{isAuth}=useContext(Authcontext)
@@ -31,8 +31,8 @@ const Home = () => {
         </Box>
         <Box p="400px"  >
           <Image mt="-300px" w="100%" h="500px" src="https://a.1stdibscdn.com/archivesE/upload/v_842/1495138567864/18097_01_Burberry_Clifton_Convertible_Tote_Heritag_2D_0004_l.jpg"></Image>
-       <Heading fontWeight={600} as='h3' size='lg' marginBottom={"10px"}>CHILDREN</Heading>
-       <Heading fontWeight={600} as='h3' size='lg' marginBottom={"10px"}>THE TRENCH COAT</Heading>
+       <Heading fontWeight={600} as='h3' size='lg' marginBottom={"10px"} data-aos="fade-right">CHILDREN</Heading>
+       <Heading fontWeight={600} as='h3' size='lg' marginBottom={"10px"} data-aos="fade-left">THE TRENCH COAT</Heading>
        <Heading fontWeight={600}  as='h3' size='lg'>SCARVES</Heading>
         </Box>
 

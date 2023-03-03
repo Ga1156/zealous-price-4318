@@ -230,17 +230,6 @@
   ],
   "Mens": [
     {
-      "id": 22,
-      "title": "Contrast Hood Nylon Mid-length Puffer Coat",
-      "price": 6999,
-      "size": "xl",
-      "type": "ti-shirt",
-      "color": "palegolden",
-      "material": "nyloan",
-      "des": "A mid-length puffer coat in high-shine nylon styled with a contrasting hood and outlined logo print. The down-filled silhouette is cut to a slim fit and features a webbed belt with a polished buckle – a nod to the hardware on our Olympia bag. The main material of this product is made with at least 70% recycled content.",
-      "img": "https://assets.burberry.com/is/image/Burberryltd/ED984BE6-C772-4A6B-9FD1-8236FF7FA565?$BBY_V2_ML_1x1$&wid=1251&hei=1251"
-    },
-    {
       "id": 23,
       "title": "Short Camden Heritage Car Coat",
       "price": 11199,
@@ -349,7 +338,28 @@
       "material": "cotton",
       "des": "A mid-length puffer coat in high-shine nylon styled with a contrasting hood and outlined logo print. The down-filled silhouette is cut to a slim fit and features a webbed belt with a polished buckle – a nod to the hardware on our Olympia bag. The main material of this product is made with at least 70% recycled content.",
       "img": "https://assets.burberry.com/is/image/Burberryltd/C2A81EAD-47BE-4504-903A-AE7544BFA728?$BBY_V2_SL_1x1$&wid=1251&hei=1251"
+    },
+    {
+      "title": "New",
+      "price": "1000",
+      "des": "shvfscscbsjbcj",
+      "img": "https://assets.burberry.com/is/image/Burberryltd/8EB3972D-4453-4A7D-92A1-83D581B8B3B5?$BBY_V2_ML_1x1$&wid=1251&hei=1251",
+      "id": 33
+    },
+    {
+      "title": "NEW PRODUCT",
+      "price": "1000",
+      "des": "njffnsibbs",
+      "img": "https://assets.burberry.com/is/image/Burberryltd/2765C113-4741-440B-B59B-DB8BAB6647AD?$BBY_V2_SL_1x1$&wid=1251&hei=1251",
+      "id": 34
     }
   ],
-  "CART": []
+  "CART": [
+    {
+      "title": "Contrast Hood Nylon Mid-length Puffer Coat",
+      "price": 6999,
+      "img": "https://assets.burberry.com/is/image/Burberryltd/ED984BE6-C772-4A6B-9FD1-8236FF7FA565?$BBY_V2_ML_1x1$&wid=1251&hei=1251",
+      "id": 2
+    }
+  ]
 }

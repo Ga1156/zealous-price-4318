@@ -16,9 +16,9 @@ body {
   }
   
   .content {
+  
    height:"700px";
-   background-image: url('C:\Users\hp\Desktop\RCT-101-B23\zealous-price-4318\burberry.com\src\IMG\admin_1.png')
-   
+  
   }
   
   /* FADE ANIMATIONS */
@@ -53,7 +53,7 @@ body {
   
   .sidebar {
     min-width: 300px;
-    min-height: 701px;
+    min-height: 923px;
     background: rgb(42, 48, 48);
    
     padding: 20px;

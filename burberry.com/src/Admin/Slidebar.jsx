@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
   faBars,
   faCompass,
@@ -38,7 +39,7 @@ const Sidebar = () => {
                 classNames={"fade"}
                 unmountOnExit
               >
-                <span>{item.title}</span>
+                <span ><Link to="adminDashboard">{item.title}</Link></span>
               </CSSTransition>
             </div>
           </li>
