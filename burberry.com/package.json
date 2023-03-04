@@ -26,9 +26,9 @@
     "react-transition-group": "^4.4.5",
     "web-vitals": "^2.1.4"
   },
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,8 +51,5 @@
       "last 1 safari version"
     ]
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+ 
 }
